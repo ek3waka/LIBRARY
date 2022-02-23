@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="description">Book library</div>
+
+        <form class="book-info-input">
+            <div class="input">
+                <label for="title">Title</label>
+                <input type="text" id="title" required>
+            </div>
+            
+            <div class="input">
+                <label for="Author">Author</label>
+                <input type="text" id="author" required>
+            </div>
+            
+            <div class="input">
+                <label for="pages">Pages</label>
+                <input type="number" id="pages" required>
+            </div>
+
+            <div class="input">
+                <div class="select-label">Is a book read?</div>
+                <select id="isRead" name="isRead">
+                    <option value="">Choose</option>
+                    <option value="1">Yeah</option>
+                    <option value="2">Nope</option>
+                </select>
+            </div>
+            <button type="button" class="add-button">Add</button>
+
+        </form>
+
+        <table id="book-table">
+            <tr class="table-header">
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Is read?</th>
+                <th></th>
+            </tr>
+            <tr class="book">
+                <td class="book-title">ABC</td>
+                <td class='book-author'>ABC</td>
+                <td class="book-pages">228</td>
+                <td class="book-status"><button class="change-status-button">Read</button></td>
+                <td class="book-delete"><button class="delete-button">Delete</button></td>
+            </tr>
+            <tr class="book">
+                <td class="book-title">ABC</td>
+                <td class='book-author'>ABC</td>
+                <td class="book-pages">500</td>
+                <td class="book-status"><button class="change-status-button">Not read</button></td>
+                <td class="book-delete"><button class="delete-button">Delete</button></td>
+            </tr>
+        </table>
+
+
+    </main>
+</body>
+</html>
