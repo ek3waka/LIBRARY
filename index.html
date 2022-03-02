@@ -7,10 +7,14 @@
     <title>Document</title>
     <link href="style.css" rel="stylesheet">
     <script src="script.js" defer></script>
+    <link rel="icon" href="/images/library.svg" type="image/svg+xml">
 </head>
 <body>
     <main>
-        <div class="description">Book library</div>
+        <div class="header">
+            <h1>Book library</h1>
+            <p  class="description">Page allows you to add books with the title, number of pages, delete them and change the read status</p>
+        </div>
 
         <form class="book-info-input">
             <div class="input">
@@ -19,7 +23,7 @@
             </div>
             
             <div class="input">
-                <label for="Author">Author</label>
+                <label for="author">Author</label>
                 <input type="text" id="author" required>
             </div>
             

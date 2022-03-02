@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -55,14 +56,14 @@ table {
 
 
 body {
-    background-color: beige;
+    background-color: #e2e8f0;
     margin: 0;
-    font-family: Roboto, sans-serif;
+    font-family: 'Rubik', Roboto, sans-serif;
     font-size: 14px;
 }
 
 main {
-    width: 1200px;
+    width: 1400px;
     
     display: flex;
     flex-direction: column;
@@ -71,23 +72,33 @@ main {
     margin: auto;
 }
 
+.header {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .description {
     width: 100%;
     height: 40px;
     margin-top: 50px;    
     text-align: center;
+    font-size: 1.25rem;
 }
 
 .book-info-input {
     width: 75%;
-    height: 120px;
+    height: 80px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     border: none;
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
 }
 
 
@@ -97,8 +108,39 @@ main {
     
 }
 
+label, .select-label {
+    font-size: 1.25rem;
+}
+
 input, select {
     margin-top: 10px;
+    height: 26px;
+    width: 180px;
+    border-radius: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
+    font-size: 1.1rem;
+    -webkit-appearance: none;
+    border: 1px solid lightgrey;
+}
+
+input:focus {
+    border: 1px solid #33C3F0;
+    outline: 0;
+}
+
+select {
+    height: 30px;
+    padding-right: 10px;
+    background-image: url(http://s1.iconbird.com/ico/2013/8/426/w32h321377581133134TriangleDown.png);
+    background-size: 5%;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: calc(100% - 10px);
+}
+select:focus {
+    border: 1px solid #33C3F0;
+    outline: 0;
 }
 
 .add-button {
@@ -107,7 +149,7 @@ input, select {
 
 
 table {
-    background-color: rgb(36, 112, 53);
+    background-color: #e2e8f0;
     width: 75%;
     
     margin: 0 auto;
@@ -121,13 +163,13 @@ th {
     height: var(--table-cell-height);
     vertical-align: middle;
     padding: 8px;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid rgb(153, 153, 153);
     font-size: 1.5rem;
 
 }
 
 td {
-    border: 1px solid black;
+    border-bottom: 1px solid rgb(153, 153, 153);
     height: var(--table-cell-height);
     padding: 8px;
     vertical-align: middle;
@@ -147,11 +189,15 @@ td {
 
 .book-status {
     width: 15%;
+    text-align: left;
+}
+
+.book-delete{
+    width: 20%;
     text-align: center;
 }
 
-.change-status-button {
-    background-color: #0ea5e9;
+.add-button, .change-status-button, .delete-button {
     --height: 2.5rem;
     width: 6rem;
     height: var(--height);
@@ -159,12 +205,23 @@ td {
     border: none;
     color: white;
     font-weight: 600;
+    box-shadow: 1px 1px 10px #cacaca;
+}
+
+.add-button {
+    background-color: #047857;
+}
+
+.add-button:hover {
+    background-color: #065f46
 }
 
 
-.book-delete{
-    width: 20%;
-    text-align: center;
+.change-status-button {
+    background-color: #0ea5e9;
+}
+.change-status-button:hover {
+    background-color: #0284c7;
 }
 
 
@@ -172,12 +229,10 @@ td {
 
 .delete-button {
     background-color: #ef4444;
-    --height: 2.5rem;
-    width: 6rem;
-    height: var(--height);
-    border-radius: calc(var(--height) * 0.45); 
-    border: none;
-    color: white;
-    font-weight: 600;
+}
+
+
+.delete-button:hover {
+    background-color: #b91c1c;
 }
 

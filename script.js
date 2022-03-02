@@ -60,7 +60,7 @@ function addRow(tableID) {
       
         
           statusButton.classList.add('change-status-button');
-          
+          statusButton.id = myLibrary.length-1;       
 
           
           if (isRead.value === '1') {
@@ -89,19 +89,32 @@ function addRow(tableID) {
 
 const changeReadStateBtns = document.querySelectorAll('.change-status-button');
 
-changeReadStateBtns.forEach((changeReadStateBtn) => {
+/* changeReadStateBtns.forEach((changeReadStateBtn) => {
   changeReadStateBtn.addEventListener('click', 
     () => changeReadState(changeReadStateBtn.id));
-})
+}) */
 
 
 bookTable.addEventListener('click', function(evt) {
-  if(evt.target.closest('.delete-button')) {
-  	evt.target.closest('tr').remove();
+  if(evt.target.closest('.change-status-button')) {
 
+    
+  	if (evt.target.closest('button').textContent === 'Read') {
+      evt.target.closest('button').textContent = 'Not read';
+
+    } else {
+      evt.target.closest('button').textContent = 'Read'
+    }
+    
    }})
 
 
 bookTable.addEventListener('click', function(evt) {
     if(evt.target.closest('.delete-button')) {
       evt.target.closest('tr').remove() }})
+
+
+//switch read
+Book.prototype.switchRead() = function () {
+    
+}
