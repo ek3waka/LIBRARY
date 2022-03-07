@@ -6,9 +6,9 @@ function Book(title, author, pages, isReadOption) {
   this.pages = pages;
   this.isRead = isReadOption;
 }
-
+let tableRef = document.getElementById('book-table');
 function addBookToLibrary() {
-      let tableRef = document.getElementById('book-table');
+      
       let bookTable = document.querySelector('#book-table')
       let title = document.getElementById('title').value;
       let author = document.getElementById('author').value;
@@ -19,7 +19,7 @@ function addBookToLibrary() {
       //вот здесь проверка на заполнение
       if (title !== '' && author !== '' && pages !== '') {
       myLibrary.push(newBook);
-      addRow(tableRef)
+      createTableRows(tableRef)
       }
       
 }
@@ -33,7 +33,7 @@ addButton.addEventListener('click', () => addBookToLibrary())
 
 //добавить метод типа push
 
-function addRow(tableRef) {
+function createTableRows(tableRef) {
           
           let newText1, newText2, newText3, statusButton, deleteButton;
           //удалить таблицу
@@ -44,8 +44,8 @@ function addRow(tableRef) {
 
           //пройти по массиву и вывести все книги
           for (let i=0; i < myLibrary.length; i++) {
-          // Вставляем строку в конец таблицы
-               let newRow = tableRef.insertRow(-1);
+               // Вставляем строку в конец таблицы
+                let newRow = tableRef.insertRow(-1);
               
                // Вставляем ячейку в строку с индексом 0
                 let newCell1 = newRow.insertCell(0);
@@ -86,39 +86,33 @@ function addRow(tableRef) {
                 newCell5.appendChild(deleteButton);
           } 
     } 
-
-
-
-
-
-const changeReadStateBtns = document.querySelectorAll('.change-status-button');
-
-/* changeReadStateBtns.forEach((changeReadStateBtn) => {
-  changeReadStateBtn.addEventListener('click', 
-    () => changeReadState(changeReadStateBtn.id));
-}) */
-
-
+//поменять статус книги
 bookTable.addEventListener('click', function(evt) {
   if(evt.target.closest('.change-status-button')) {
 
     
-  	if (evt.target.closest('button').textContent === 'Read') {
-      evt.target.closest('button').textContent = 'Not read';
-
-    } else {
-      evt.target.closest('button').textContent = 'Read'
-    }
-    
+    myLibrary.switchRead(evt.target.getAttribute('id'))
+    createTableRows(tableRef)
    }})
 
-
+//удалить книгу из массива
 bookTable.addEventListener('click', function(evt) {
     if(evt.target.closest('.delete-button')) {
-      evt.target.closest('tr').remove() }})
+      myLibrary.splice(evt.target.getAttribute('id'), 1)
+      createTableRows(tableRef)
+      }
+      })
 
 
-/* //switch read
-Book.prototype.switchRead() = function () {
-
-} */
+//метод для смены статуса прочтения
+Array.prototype.switchRead = function(id) {
+      
+      if (this[id].isRead === 'Yeah') { 
+      
+        this[id].isRead = 'Nope'
+    } else {
+      
+      this[id].isRead = 'Yeah'
+    }
+    
+}
