@@ -7,6 +7,8 @@ function Book(title, author, pages, isReadOption) {
   this.isRead = isReadOption;
 }
 let tableRef = document.getElementById('book-table');
+
+
 function addBookToLibrary() {
       
       let bookTable = document.querySelector('#book-table')
