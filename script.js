@@ -1,27 +1,36 @@
 let myLibrary = [];
 
-function Book(title, author, pages, isReadOption) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = isReadOption;
+class Book {
+  constructor(title, author, pages, isReadOption) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isReadOption;
+  }
 }
+
 let tableRef = document.getElementById('book-table');
 function addBookToLibrary() {
+  let bookTable = document.querySelector('#book-table')
+  let title = document.getElementById('title').value;
+  let author = document.getElementById('author').value;
+  let pages = document.getElementById('pages').value;
+  let isRead = document.getElementById('isRead');
+  let isReadOption = isRead.options[isRead.selectedIndex].text;
+  const newBook = new Book(title, author, pages, isReadOption);
       
-      let bookTable = document.querySelector('#book-table')
-      let title = document.getElementById('title').value;
-      let author = document.getElementById('author').value;
-      let pages = document.getElementById('pages').value;
-      let isRead = document.getElementById('isRead');
-      let isReadOption = isRead.options[isRead.selectedIndex].text;
-      const newBook = new Book(title, author, pages, isReadOption);
-      //вот здесь проверка на заполнение
-      if (title !== '' && author !== '' && pages !== '') {
-      myLibrary.push(newBook);
-      createTableRows(tableRef)
-      }
-      
+  if (title !== '' && author !== '' && pages !== '') {
+    myLibrary.push(newBook);
+    createTableRows(tableRef)
+    document.getElementById('title').value = ''
+    document.getElementById('author').value = ''
+    document.getElementById('pages').value = ''
+    } else if (title == '' || author == '' || pages == '') { 
+        document.getElementById('pages').setCustomValidity("Inputs must not be empty");
+        document.getElementById('pages').reportValidity()
+    } else {
+        document.getElementById('pages').setCustomValidity('')
+    }
 }
 
 
@@ -31,16 +40,13 @@ let addButton = document.querySelector('.add-button');
 
 addButton.addEventListener('click', () => addBookToLibrary())
 
-//добавить метод типа push
-
 function createTableRows(tableRef) {
-          
           let newText1, newText2, newText3, statusButton, deleteButton;
           //удалить таблицу
           let tableLen = tableRef.rows.length; 
           for(var i=1; i<tableLen; i++){ 
             tableRef.deleteRow(1); 
-            }
+          }
 
           //пройти по массиву и вывести все книги
           for (let i=0; i < myLibrary.length; i++) {
@@ -63,21 +69,16 @@ function createTableRows(tableRef) {
             
                 newCell4.classList.add('book-status');
                 newCell5.classList.add('book-delete');
-            
-              
+
                 statusButton.classList.add('change-status-button');
                 statusButton.id = i;       
 
-                
                 if (myLibrary[i].isRead === 'Yeah') {
                   statusButton.innerText = 'Read';
                 } else statusButton.innerText = 'Not read';
 
-                
                 deleteButton.classList.add('delete-button');
                 deleteButton.innerText = 'Delete';
-            
-            
             
                 newCell1.appendChild(newText1);
                 newCell2.appendChild(newText2);
@@ -89,11 +90,10 @@ function createTableRows(tableRef) {
 //поменять статус книги
 bookTable.addEventListener('click', function(evt) {
   if(evt.target.closest('.change-status-button')) {
-
-    
     myLibrary.switchRead(evt.target.getAttribute('id'))
     createTableRows(tableRef)
-   }})
+  }
+})
 
 //удалить книгу из массива
 bookTable.addEventListener('click', function(evt) {
@@ -101,18 +101,14 @@ bookTable.addEventListener('click', function(evt) {
       myLibrary.splice(evt.target.getAttribute('id'), 1)
       createTableRows(tableRef)
       }
-      })
+})
 
 
 //метод для смены статуса прочтения
 Array.prototype.switchRead = function(id) {
-      
-      if (this[id].isRead === 'Yeah') { 
-      
-        this[id].isRead = 'Nope'
+    if (this[id].isRead === 'Yeah') { 
+      this[id].isRead = 'Nope'
     } else {
-      
       this[id].isRead = 'Yeah'
     }
-    
 }
